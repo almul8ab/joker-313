@@ -227,7 +227,6 @@ async def play(event):
 
 #end
 @JE313P.on(events.NewMessage(pattern="^[/?!]انهاء"))
-@is_admin
 async def vc_end(event, perm):
     chat_id = event.chat_id
     if chat_id in QUEUE:
@@ -455,7 +454,6 @@ async def leavevc(event, perm):
 
 
 @JE313P.on(events.NewMessage(pattern="^[?!/]تخطي"))
-@is_admin
 async def vc_skip(event, perm):
     chat_id = event.chat_id
     if len(event.text.split()) < 2:
