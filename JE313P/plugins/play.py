@@ -461,12 +461,13 @@ async def leavevc(event, perm):
 @JE313P.on(events.NewMessage(pattern="^[?!/]اصعد"))
 @is_admin
 async def leavevc(event, perm):
-    razan = await event.reply("- يرجى الانتظار قليلا")
-    chat_id = event.chat_id
+    event = await event.reply("- يرجى الانتظار قليلا")
+    chat = event.chat_id
+    vc_chat = await l313l.get_entity(chat)
     from_user = vcmention(event.sender)
     if from_user:
         try:
-            await call_py.join_group_call(chat_id)
+            await call_py.join_group_call(vc_chat)
         except (NotInGroupCallError, NoActiveGroupCall):
             pass
         await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
