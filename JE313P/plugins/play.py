@@ -465,12 +465,12 @@ async def leavevc(event, perm):
 @is_admin
 async def joinvc(event, perm):
     event = await event.reply("- يرجى الانتظار قليلا")
-    chat = event.chat_id
-    vc_chat = await JE313P.get_entity(chat)
+    chat_id = event.chat_id
     from_user = vcmention(event.sender)
     if from_user:
         try:
-            await call_py.join_group_call(vc_chat)
+            await call_py.join_group_call(chat_id)
+            add_to_queue(chat_id)
         except (NotInGroupCallError, NoActiveGroupCall):
             pass
         await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
