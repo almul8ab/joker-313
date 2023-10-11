@@ -235,7 +235,7 @@ async def play(event):
 
 #end
 @JE313P.on(events.NewMessage(pattern="^[/?!]انهاء"))
-async def vc_end(event, perm):
+async def vc_end(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
         try:
@@ -467,7 +467,7 @@ async def joinvc(event, perm):
     from_user = vcmention(event.sender)
     if from_user:
         try:
-            await call_py.join_group_call(chat_id, stream_type=StreamType().pulse_stream)
+            await call_py.join_group_call(chat_id, stream=your_stream)
         except (NotInGroupCallError, NoActiveGroupCall):
             pass
         await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
@@ -477,7 +477,7 @@ async def joinvc(event, perm):
 
 
 @JE313P.on(events.NewMessage(pattern="^[?!/]تخطي"))
-async def vc_skip(event, perm):
+async def vc_skip(event):
     chat_id = event.chat_id
     if len(event.text.split()) < 2:
         op = await skip_current_song(chat_id)
