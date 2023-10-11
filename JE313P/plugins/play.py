@@ -141,7 +141,7 @@ async def play(event):
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
-        await client(ImportChatInviteRequest(hash=chat_id))
+        await client(ImportChatInviteRequest(chat_id))
         await event.edit("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
         await event.edit(str(e))
