@@ -139,12 +139,11 @@ async def play(event):
     sender = await event.get_sender()
     chat = await event.get_chat()
     chat_id = event.chat_id
-    jok = await event.reply(text, parse_mode=None, link_preview=None )
-    joker = await JE313P.get_entity(chat_id)
+    jok = await event.reply(parse_mode=None, link_preview=None )
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
-        await client(ImportChatInviteRequest(joker))
+        await client(ImportChatInviteRequest(chat_id))
         await jok.reply("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
         await jok.reply(str(e))
