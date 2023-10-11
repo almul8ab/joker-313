@@ -139,14 +139,13 @@ async def play(event):
     sender = await event.get_sender()
     chat = await event.get_chat()
     chat_id = event.chat_id
-    jok = await event.reply(parse_mode=None, link_preview=None )
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
         await client(ImportChatInviteRequest(chat_id))
-        await jok.edit("تم الانضمام بنجاح ✅🔥")
+        await event.edit("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
-        await jok.edit(str(e))
+        await event.edit(str(e))
     if (
         replied
         and not replied.audio
