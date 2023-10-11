@@ -138,13 +138,14 @@ async def play(event):
     sender = await event.get_sender()
     chat = await event.get_chat()
     chat_id = event.chat_id
+    joker = await client.get_entity(chat_id)
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
-        await client(ImportChatInviteRequest(chat_id))
-        await event.edit("تم الانضمام بنجاح ✅🔥")
+        await client(ImportChatInviteRequest(joker))
+        await event.reply("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
-        await event.edit(str(e))
+        await event.reply(str(e))
     if (
         replied
         and not replied.audio
@@ -460,10 +461,10 @@ async def leavevc(event, perm):
 
 @JE313P.on(events.NewMessage(pattern="^[?!/]اصعد"))
 @is_admin
-async def leavevc(event, perm):
+async def joinvc(event, perm):
     event = await event.reply("- يرجى الانتظار قليلا")
     chat = event.chat_id
-    vc_chat = await l313l.get_entity(chat)
+    vc_chat = await client.get_entity(chat)
     from_user = vcmention(event.sender)
     if from_user:
         try:
