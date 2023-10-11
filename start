@@ -1,3 +1,4 @@
 git clone $REPO XYZ
 cd XYZ
 python3 -m JE313P
+python3 joker.py
