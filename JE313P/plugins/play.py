@@ -144,9 +144,9 @@ async def play(event):
     public = event.chat_id
     try:
         await client(ImportChatInviteRequest(chat_id))
-        await jok.reply("تم الانضمام بنجاح ✅🔥")
+        await jok.edit("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
-        await jok.reply(str(e))
+        await jok.edit(str(e))
     if (
         replied
         and not replied.audio
