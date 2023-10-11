@@ -141,7 +141,7 @@ async def play(event):
     public = event.chat_id
     try:
         await client(functions.channels.JoinChannelRequest(channel=chat_id))
-        await client.event.edit("تم بنجاح الانضمام للمجموعة ✅\nاذا لم ينضم الحساب استخدم الامر !ادخل + معرف المجموعة")
+        await client.send_message(chat_id, "تم بنجاح الانضمام للمجموعة ✅\nاذا لم ينضم الحساب استخدم الامر !ادخل + معرف المجموعة")
     except Exception as e:
         await event.edit(str(e))
     if (
@@ -456,6 +456,21 @@ async def leavevc(event, perm):
         await razan.edit("**- تم مغادرة المكالمة بنجاح للدردشة** `{}`".format(str(event.chat_id)))
     else:
         await razan.edit(f"**عذرا {owner} يستخدم الامر في الدردشات الصوتية فقط**")
+
+@JE313P.on(events.NewMessage(pattern="^[?!/]اصعد"))
+@is_admin
+async def leavevc(event, perm):
+    razan = await event.reply("- يرجى الانتظار قليلا")
+    chat_id = event.chat_id
+    from_user = vcmention(event.sender)
+    if from_user:
+        try:
+            await call_py.join_group_call(chat_id)
+        except (NotInGroupCallError, NoActiveGroupCall):
+            pass
+        await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
+    else:
+        await event.edit(f"**عذرا {owner} يستخدم الامر في الدردشات الصوتية فقط**")
 
 
 
