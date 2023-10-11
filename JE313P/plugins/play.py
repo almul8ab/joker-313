@@ -8,6 +8,7 @@ from pytgcalls.types.input_stream.quality import (
     LowQualityVideo,
     MediumQualityVideo,
 )
+from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.channels import LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
@@ -140,7 +141,7 @@ async def play(event):
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
-        await client(ImportChatInviteRequest(hash=chat.id))
+        await client(ImportChatInviteRequest(hash=chat_id))
         await event.edit("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
         await event.edit(str(e))
