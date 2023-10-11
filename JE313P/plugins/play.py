@@ -467,7 +467,11 @@ async def joinvc(event, perm):
     from_user = vcmention(event.sender)
     if from_user:
         try:
-            await call_py.join_group_call(chat_id, stream=your_stream)
+            await call_py.join_group_call(
+                chat_id,
+                stream_type=StreamType().pulse_stream,
+            )
+            add_to_queue(chat_id, "Audio", 0)
         except (NotInGroupCallError, NoActiveGroupCall):
             pass
         await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
