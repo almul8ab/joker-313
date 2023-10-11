@@ -138,7 +138,7 @@ async def play(event):
     sender = await event.get_sender()
     chat = await event.get_chat()
     chat_id = event.chat_id
-    joker = await client.get_entity(chat_id)
+    joker = await JE313P.get_entity(chat_id)
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
