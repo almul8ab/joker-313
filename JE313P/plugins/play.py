@@ -142,7 +142,7 @@ async def play(event):
     from_user = vcmention(event.sender) 
     public = event.chat_id
     try:
-        await client(ImportChatInviteRequest(chat_id))
+        await client(functions.channels.JoinChannelRequest(channel=chat_id))
         await event.edit("تم الانضمام بنجاح ✅🔥")
     except Exception as e:
         await event.edit(str(e))
