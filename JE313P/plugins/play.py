@@ -464,7 +464,7 @@ async def leavevc(event, perm):
 async def joinvc(event, perm):
     event = await event.reply("- يرجى الانتظار قليلا")
     chat = event.chat_id
-    vc_chat = await client.get_entity(chat)
+    vc_chat = await JE313P.get_entity(chat)
     from_user = vcmention(event.sender)
     if from_user:
         try:
