@@ -8,6 +8,7 @@ from pytgcalls.types.input_stream.quality import (
     LowQualityVideo,
     MediumQualityVideo,
 )
+from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.tl.functions.channels import LeaveChannelRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
 from telethon.tl.functions.messages import ImportChatInviteRequest
@@ -138,6 +139,11 @@ async def play(event):
     chat_id = event.chat_id
     from_user = vcmention(event.sender) 
     public = event.chat_id
+    try:
+        await client(functions.channels.JoinChannelRequest(channel=chat_id))
+        await client.event.edit("تم بنجاح الانضمام للمجموعة ✅\nاذا لم ينضم الحساب استخدم الامر !ادخل + معرف المجموعة")
+    except Exception as e:
+        await event.edit(str(e))
     if (
         replied
         and not replied.audio
