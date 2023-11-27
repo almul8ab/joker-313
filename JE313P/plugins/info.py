@@ -18,7 +18,7 @@ MISC_HELP = """
 [𖠄 𝗝𝗲𝗽𝘁𝗵𝗼𝗻 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𖠄](https://t.me/JEPTHON)
 """
 
-@JE313P.on(events.NewMessage(pattern="^[!?/]الايدي"))
+@JE313P.on(events.NewMessage(pattern="^الايدي"))
 async def id(event):
 
     if event.is_private:
