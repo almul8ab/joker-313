@@ -132,7 +132,9 @@ btnn =[
 
 
 #play
-@JE313P.on(events.NewMessage(pattern="^[?!/]تشغيل"))
+@JE313P.on(events.NewMessage(pattern="^تشغيل"))
+async def play(event):
+    # باقي الأكواد...
 async def play(event):
     title = ' '.join(event.text[5:])
     replied = await event.get_reply_message()
@@ -234,7 +236,7 @@ async def play(event):
 
 
 #end
-@JE313P.on(events.NewMessage(pattern="^[/?!]انهاء"))
+@JE313P.on(events.NewMessage(pattern="^انهاء"))
 async def vc_end(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
@@ -251,7 +253,7 @@ async def vc_end(event):
 
 
 
-@JE313P.on(events.NewMessage(pattern="^[?!/]فيديو"))
+@JE313P.on(events.NewMessage(pattern="^فيديو"))
 async def vplay(event):
     if Config.HEROKU_MODE == "ENABLE":
         await event.reply("- لا يمكنك استخدام هذا الامر لانك تستخدم هيروكو في التنصيب")
@@ -414,7 +416,7 @@ async def vplay(event):
 
 
 #playlist
-@JE313P.on(events.NewMessage(pattern="^[?!/]التشغيل"))
+@JE313P.on(events.NewMessage(pattern="^التشغيل"))
 @is_admin
 async def vc_playlist(event, perm):
     chat_id = event.chat_id
@@ -444,7 +446,7 @@ async def vc_playlist(event, perm):
 
 
 #كود المغادرة
-@JE313P.on(events.NewMessage(pattern="^[?!/]مغادرة"))
+@JE313P.on(events.NewMessage(pattern="^مغادرة"))
 @is_admin
 async def leavevc(event, perm):
     razan = await event.reply("- يرجى الانتظار قليلا")
@@ -480,7 +482,7 @@ async def joinvc(event, perm):
 
 
 
-@JE313P.on(events.NewMessage(pattern="^[?!/]تخطي"))
+@JE313P.on(events.NewMessage(pattern="^تخطي"))
 async def vc_skip(event):
     chat_id = event.chat_id
     if len(event.text.split()) < 2:
@@ -508,7 +510,7 @@ async def vc_skip(event):
             await event.reply(DELQUE)
 
 
-@JE313P.on(events.NewMessage(pattern="^[?!/]ايقاف"))
+@JE313P.on(events.NewMessage(pattern="^ايقاف"))
 @is_admin
 async def vc_pause(event, perm):
     chat_id = event.chat_id
@@ -523,7 +525,7 @@ async def vc_pause(event, perm):
 
 
 
-@JE313P.on(events.NewMessage(pattern="^[?!/]استئناف"))
+@JE313P.on(events.NewMessage(pattern="^استئناف"))
 @is_admin
 async def vc_resume(event, perm):
     chat_id = event.chat_id
