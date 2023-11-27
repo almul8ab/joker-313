@@ -15,7 +15,7 @@ PR_HELP = """
 
 """
 
-@JE313P.on(events.NewMessage(pattern=r"^[?!]تنظيف"))
+@JE313P.on(events.NewMessage(pattern=r"^تنظيف"))
 @is_admin
 async def purge_messages(event, perm):
     if not perm.delete_messages:
@@ -45,7 +45,7 @@ async def purge_messages(event, perm):
 
 
 
-@JE313P.on(events.NewMessage(pattern="^[!?/]مسح$"))
+@JE313P.on(events.NewMessage(pattern="^مسح$"))
 @is_admin
 async def delete_messages(event, perm):
     if not perm.delete_messages:
