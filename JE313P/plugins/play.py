@@ -45,7 +45,6 @@ from JE313P.helpers.queues import (
 from telethon import Button, events
 from JE313P.helpers.thumbnail import gen_thumb
 
-
 def vcmention(user):
     full_name = get_display_name(user)
     if not isinstance(user, types.User):
@@ -127,7 +126,7 @@ async def _(event):
      await event.delete()
 
 btnn =[
-    [Button.url("المطور", url=f"t.me/{Config.SUPPORT}"), Button.url("القناة", url=f"t.me/{Config.CHANNEL}")],
+    [Button.url("الدعم", url=f"t.me/{Config.SUPPORT}"), Button.url("القناة", url=f"t.me/{Config.CHANNEL}")],
     [Button.inline("اغلاق", data="cls")]]
 
 
@@ -227,9 +226,11 @@ async def play(event):
 
 
 
+
 #end
 @JE313P.on(events.NewMessage(pattern="^انهاء"))
-async def vc_end(event):
+@is_admin
+async def vc_end(event, perm):
     chat_id = event.chat_id
     if chat_id in QUEUE:
         try:
@@ -453,29 +454,11 @@ async def leavevc(event, perm):
     else:
         await razan.edit(f"**عذرا {owner} يستخدم الامر في الدردشات الصوتية فقط**")
 
-@JE313P.on(events.NewMessage(pattern="^[?!/]اصعد"))
-@is_admin
-async def joinvc(event, perm):
-    event = await event.reply("- يرجى الانتظار قليلا")
-    chat_id = event.chat_id
-    from_user = vcmention(event.sender)
-    if from_user:
-        try:
-            await call_py.join_group_call(
-                chat_id,
-                stream_type=StreamType().pulse_stream,
-            )
-            add_to_queue(chat_id, "Audio", 0)
-        except (NotInGroupCallError, NoActiveGroupCall):
-            pass
-        await event.edit("**- تم صعود حساب المساعد الى المكالمة بنجاح **")
-    else:
-        await event.edit(f"**عذرا {owner} يستخدم الامر في الدردشات الصوتية فقط**")
-
 
 
 @JE313P.on(events.NewMessage(pattern="^تخطي"))
-async def vc_skip(event):
+@is_admin
+async def vc_skip(event, perm):
     chat_id = event.chat_id
     if len(event.text.split()) < 2:
         op = await skip_current_song(chat_id)
