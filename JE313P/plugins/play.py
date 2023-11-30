@@ -29,8 +29,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from youtubesearchpython import VideosSearch
 
  
-fotoplay = "https://telegra.ph/file/b6402152be44d90836339.jpg"
-ngantri = "https://telegra.ph/file/b6402152be44d90836339.jpg"
+fotoplay = "https://telegra.ph/file/5365d87fe666bd0c24ea7.jpg"
+ngantri = "https://telegra.ph/file/5365d87fe666bd0c24ea7.jpg"
 from JE313P import call_py, JE313P, client as Client
 owner = Config.OWNER_ID
 from JE313P.helpers.yt_dlp import bash
