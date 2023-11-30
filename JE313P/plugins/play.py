@@ -141,11 +141,6 @@ async def play(event):
     chat_id = event.chat_id
     from_user = vcmention(event.sender) 
     public = event.chat_id
-    try:
-        await client(functions.channels.JoinChannelRequest(channel=chat_id))
-        await event.edit("تم الانضمام بنجاح ✅🔥")
-    except Exception as e:
-        await event.edit(str(e))
     if (
         replied
         and not replied.audio
@@ -228,7 +223,6 @@ async def play(event):
             except Exception as ep:
                 clear_queue(chat_id)
                 await botman.edit(f"`{ep}`")
-
 
 
 
